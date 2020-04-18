@@ -1,0 +1,65 @@
+/*  Name: Rittika Basu
+    Guide: Prof. Kate Hartman
+    Advanced Wearables Assignment 3 : Final Project/ Tell a Tale
+    20-04-2020
+*/
+
+#include <AP_Sync.h>
+#include <Adafruit_CircuitPlayground.h>
+
+#define CAP_THRESHOLD 250
+#define DEBOUNCE 2000
+
+AP_Sync sendData(Serial);
+
+// Declare sensor pin numbers
+//int analogPin1 = 0; //Introduction Scene
+int capacitivePin6 = 1; // 2nd Scene
+int capacitivePin8 = 2; // 3rd Scene
+int capacitivePin1 = 3; // 4th Scene
+int capacitivePin4 = 6; // 5th Scene
+int capacitivePin2 = 9; // 6rd Scene
+int capacitivePin3 = 10; // 7th Scene
+int capacitivePin5 = 12; // 8th Scene
+int capacitivePin7 = 0; // 8th Scene
+
+// Declare variables to store sensor inputs
+//int analogVal1;
+int capacitiveVal6;
+int capacitiveVal8;
+int capacitiveVal1;
+int capacitiveVal4;
+int capacitiveVal2;
+int capacitiveVal3;
+int capacitiveVal5;
+int capacitiveVal7;
+
+void setup() {
+  Serial.begin(9600);   // Initialize serial
+  CircuitPlayground.begin();  // Initialize Circuit Playground library
+}
+void loop() {
+  // Read inputs from Sensors
+  //analogVal1 = analogRead(analogPin1);
+  capacitiveVal6 = CircuitPlayground.readCap(capacitivePin6);
+  capacitiveVal8 = CircuitPlayground.readCap(capacitivePin8);
+  capacitiveVal1 = CircuitPlayground.readCap(capacitivePin1);
+  capacitiveVal4 = CircuitPlayground.readCap(capacitivePin4);
+  capacitiveVal2 = CircuitPlayground.readCap(capacitivePin2);
+  capacitiveVal3 = CircuitPlayground.readCap(capacitivePin3);
+  capacitiveVal5 = CircuitPlayground.readCap(capacitivePin5);
+  capacitiveVal7 = CircuitPlayground.readCap(capacitivePin7);
+
+  delay(DEBOUNCE); // Update rate
+
+  // Send readings to processing
+  //sendData.sync("Asensor1", analogVal1);
+  sendData.sync("Csensor6", capacitiveVal6);
+  sendData.sync("Csensor8", capacitiveVal8);
+  sendData.sync("Csensor1", capacitiveVal1);
+  sendData.sync("Csensor4", capacitiveVal4);
+  sendData.sync("Csensor2", capacitiveVal2);
+  sendData.sync("Csensor3", capacitiveVal3);
+  sendData.sync("Csensor5", capacitiveVal5);
+  sendData.sync("Csensor7", capacitiveVal7);
+}
