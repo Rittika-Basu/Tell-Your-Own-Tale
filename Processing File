@@ -1,0 +1,87 @@
+/*  Name: Rittika Basu
+    Guide: Prof. Kate Hartman
+    Advanced Wearables Assignment 3 : Final Project/ Tell a Tale
+    20-04-2020
+*/
+
+import processing.sound.*;
+import processing.serial.*;
+import apsync.*;
+
+//public float Asensor1;
+public float Csensor6;
+public float Csensor8;
+public float Csensor1;
+public float Csensor4;
+public float Csensor2;
+public float Csensor3;
+public float Csensor5;
+public float Csensor7;
+
+AP_Sync readVals;
+
+PImage img1;
+PImage img2;
+PImage img3;
+PImage img4;
+PImage img5;
+PImage img6;
+PImage img7;
+PImage img8;
+
+void setup(){
+  //fullScreen();
+  size(1920, 1080);
+  
+  printArray(Serial.list());
+  String serialPort = Serial.list()[0];
+  readVals = new AP_Sync(this, serialPort, 9600);
+
+
+   
+  // Load Images
+  img1 = loadImage ("001.jpeg");
+  img2 = loadImage ("002.jpeg");
+  img3 = loadImage ("003.jpeg");
+  img4 = loadImage ("004.jpeg");
+  img5 = loadImage ("005.jpeg");
+  img6 = loadImage ("006.jpeg");
+  img7 = loadImage ("007.jpeg");
+  img8 = loadImage ("008.jpeg");
+   
+}
+
+void draw(){  
+   
+  //if (Asensor1> 900) {
+  //image(img1, 0, 0, 1920, 1080);
+  //}
+ if (Csensor6>800) {
+  image(img6, 0, 0, 1920, 1080);
+  } 
+    else if (Csensor8>600) {
+  image(img7, 0, 0, 1920, 1080);
+  }
+  else if (Csensor1>600) {
+  image(img1, 0, 0, 1920, 1080);
+  }
+  else if (Csensor4>600) {
+  image(img4, 0, 0, 1920, 1080);
+  }
+ else if (Csensor2>800) {
+  image(img3, 0, 0, 1920, 1080);
+  }
+  else if (Csensor3>600) {
+  image(img2, 0, 0, 1920, 1080);
+  }
+  else if (Csensor5>600) {
+  image(img6, 0, 0, 1920, 1080);
+  }
+    else if (Csensor7>600) {
+  image(img8, 0, 0, 1920, 1080);
+  }
+  else {
+  image(img5, 0, 0, 1920, 1080);
+  } 
+  
+}
